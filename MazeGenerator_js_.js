@@ -1,27 +1,24 @@
-var grid = [];
+let grid = [];
 
-var current;
+let current;
 
-var stack = [];
+let stack = [];
 
-var widthOfCells = 15 ;var flag = 0;
-
+let widthOfCells = 15;
+let flag = 0;
 
 function setup() {
-  
     createCanvas(800 , 600);
     frameRate(1000);
     
-    for(var j = 0; j < floor(height / widthOfCells); j++){
-      for(var i = 0; i < floor(width / widthOfCells); i++){
-        
-        var c = new Cell(i , j);
+    for(let j = 0; j < floor(height / widthOfCells); j++){
+      for(let i = 0; i < floor(width / widthOfCells); i++){
+        let c = new Cell(i , j);
         grid.push(c);
       }
     }
     
     current = grid[0];
-   
 }
 
 function draw() {
@@ -33,7 +30,7 @@ function draw() {
     
     current.visited = true;
     
-    var next = current.getNeighbours();
+    let next = current.getNeighbours();
     
     if(next){
       next.visited = true;
@@ -72,16 +69,16 @@ function Cell(i , j)
   this.marked = new Array(true , true, true , true); 
   
   
-  var x = i * widthOfCells;
-  var y = j * widthOfCells;
+  let x = i * widthOfCells;
+  let y = j * widthOfCells;
   
   this.getNeighbours = function(){
-    var neighbours = [];
+    let neighbours = [];
     {
-      var top = grid[index(i , j - 1)];
-      var left = grid[index(i - 1, j)];
-      var bottom = grid[index(i , j + 1)];
-      var right = grid[index(i + 1 , j)];
+      let top = grid[index(i , j - 1)];
+      let left = grid[index(i - 1, j)];
+      let bottom = grid[index(i , j + 1)];
+      let right = grid[index(i + 1 , j)];
       
       
       if(top && !top.visited){
@@ -101,7 +98,7 @@ function Cell(i , j)
       }
       
       if(neighbours.length > 0){
-        var r = floor(random(0 , neighbours.length));
+        let r = floor(random(0 , neighbours.length));
         return neighbours[r];
       }
       else{
